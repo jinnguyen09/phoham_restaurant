@@ -50,7 +50,14 @@ body.show-chatbot #chatbot-toggler span:last-child {
     position: fixed;
     right: 35px;
     bottom: 168px;
-    width: 420px;
+    width: 100%;
+    max-width: 420px;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 600px;
     background: #fff;
     overflow: hidden;
     border-radius: 15px;
@@ -351,4 +358,42 @@ em-emoji-picker {
 
 body.show-emoji-picker em-emoji-picker {
     visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .chatbot-popup {
+    width: 100vw;
+    height: 90vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;  /* Đảm bảo popup cố định */
+    z-index: 1000;
+  }
+
+.chat-header {
+    position: relative;
+    padding-right: 50px; /* đảm bảo có không gian bên phải cho nút close */
+}
+
+#close-chatbot {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    font-size: 2rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#close-chatbot:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
 }
