@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>PhohamLiverpool - Menu</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playball&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/owl.carousel.min.css" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+
+                <!-- linking gg font icon -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+        <link rel="stylesheet" href="Simple_Chatbot/style.css">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+        <button id="chatbot-toggler">
+            <span class="material-symbols-outlined">mode_comment</span>
+            <span class="material-symbols-outlined">close</span>
+
+        </button>
+
+
+        <div class="chatbot-popup" style="z-index: 1000;">
+            <!-- Chatbot header -->
+            <div class="chat-header">
+                <div class="header-info">
+                    <svg class="chatbot-logo" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+                        <path d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"></path>
+                    </svg>
+                    <h2 class="logo-text">PhoHam AI</h2>
+                </div>
+                <button id="close-chatbot" class="material-symbols-outlined">
+                    keyboard_arrow_down
+                </button>
+            </div>
+
+            <!-- Chatbot body -->
+            <div class="chat-body">
+                <div class="message bot-message" id="bot-message">
+                    <svg class="bot-avatar" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+                        <path d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"></path>
+                    </svg>
+                    <div class="message-text" id="bot-message">
+                        Hi! I'm PhoHam's chat bot, How could I assist you today? <br>
+                        (Chào bạn Mình là chat bot của Pho Ham, mình có thể giúp gì cho bạn hôm nay?)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chatbot footer -->
+            <div class="chat-footer">
+                <form action="#" class="chat-form">
+                    <textarea placeholder="Message..." class="message-input" required></textarea>
+                    <div class="chat-controls">
+                        <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
+                        <div class="file-upload-wrapper">
+                            <input type="file" accept="images/*" id="file-input" hidden>
+                            <img src="#">
+                            <button type="button" id="file-upload" class="material-symbols-outlined">attach_file</button>
+                            <button type="button" id="file-cancel" class="material-symbols-outlined">close</button>
+                        </div>
+                        <button type="button" id="voice-btn" class="material-symbols-outlined">mic</button>
+                        <!-- <button id="speak-btn" class="material-symbols-outlined">speaker</button> -->
+                        <button type="submit" id="send-message" class="material-symbols-outlined">arrow_upward</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Navbar Start -->
+<nav th:fragment="navbar">
+  <div class="container-fluid nav-bar fixed-top bg-white shadow-sm">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light py-3">
+        <!-- Logo -->
+        <a href="/" class="navbar-brand" style="margin-right: 50px;">
+          <h1 class="text-primary fw-bold mb-0">Phoham<span class="text-dark">Liverpool</span></h1>
+        </a>
+
+        <!-- Toggle button for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="fa fa-bars text-primary"></span>
+        </button>
+
+        <!-- Collapse content -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 w-100">
+			  <!-- Nav items -->
+			  <li class="nav-item"><a href="/index.html" class="nav-item nav-link">Home</a></li>
+			  <li class="nav-item"><a href="/menu.html" class="nav-item nav-link active">Menu</a></li>
+			  <li class="nav-item"><a href="/booking.html" class="nav-item nav-link">Booking</a></li>
+			  <li class="nav-item"><a href="/supermarket.html" class="nav-item nav-link">Supermarket</a></li>
+			  <li class="nav-item"><a href="/blog.html" class="nav-item nav-link ">Our Blog</a></li>
+			  <li class="nav-item"><a href="/about.html" class="nav-item nav-link">About Us</a></li>
+			  <li class="nav-item"><a href="/contact.html" class="nav-item nav-link">Contact</a></li>
+			
+			  <!-- Mobile only -->
+			  <li class="nav-item d-lg-none mt-2">
+			    <a class="nav-link d-flex align-items-center gap-1 text-dark disabled">
+			      <i class="fas fa-star text-warning"></i>
+			      <span class="fw-bold text-primary" th:text="${userTotalPoint != null ? userTotalPoint : 0}">0</span>
+			    </a>
+			  </li>
+			
+			  <li class="nav-item d-lg-none">
+			    <a th:href="@{/cart/view}" class="nav-link d-flex align-items-center">
+			      <i class="fas fa-shopping-cart me-1 text-success"></i> Cart
+			    </a>
+			  </li>
+			
+			  <li class="nav-item d-lg-none">
+			    <a href="" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Book Now</a>
+			  </li>
+			</ul>
+
+
+			<!-- Desktop version vẫn giữ bên ngoài -->
+			<!-- Right side desktop -->
+			<div class="d-none d-lg-flex align-items-center gap-3 ms-auto">
+			  
+			  <!-- ⭐ Point -->
+			  <div class="d-flex align-items-center gap-1">
+			    <i class="fas fa-star text-warning"></i>
+			    <span class="fw-bold text-primary small" th:text="${userTotalPoint != null ? userTotalPoint : 0}">0</span>
+			  </div>
+			
+			  <!-- 🛒 Cart -->
+			  <a href="/" class="btn btn-success btn-sm rounded-circle d-flex align-items-center justify-content-center"
+			     style="width: 36px; height: 36px;">
+			    <i class="fas fa-shopping-cart"></i>
+			  </a>
+			
+			  <!-- 👤 Profile -->
+			  <a href="/booking.html" class="btn btn-warning fw-bold text-dark px-3 py-2 rounded-pill" style="white-space: nowrap;">
+			    Booking
+			  </a>
+			</div>
+
+        </div>
+      </nav>
+    </div>
+  </div>
+</nav>
+  <!-- Navbar End -->
+
+
+        <!-- Hero Start -->
+        <div class="container-fluid bg-light py-6 my-6 mt-0">
+            <div class="container text-center animated bounceInDown">
+                <h1 class="display-1 mb-4">Menu</h1>
+                <ol class="breadcrumb justify-content-center mb-0 animated bounceInDown">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item text-dark" aria-current="page">Menu</li>
+                </ol>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+
+                <!-- Menu Start -->
+        <div class="container-fluid menu bg-light py-6 my-6">
+            <div class="container">
+                <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+                    <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Our Menu</small>
+                    <h1 class="display-5 mb-5">Most Popular Vietnamese Food</h1>
+                </div>
+                <div class="tab-class text-center">
+                    <ul class="nav nav-pills d-inline-flex justify-content-center mb-5 wow bounceInUp" data-wow-delay="0.1s">
+                        <li class="nav-item p-2">
+                            <a class="d-flex py-2 mx-2 border border-primary bg-white rounded-pill active" data-bs-toggle="pill" href="#tab-6">
+                                <span class="text-dark" style="width: 150px;">Starter</span>
+                            </a>
+                        </li>
+                        <li class="nav-item p-2">
+                            <a class="d-flex py-2 mx-2 border border-primary bg-white rounded-pill" data-bs-toggle="pill" href="#tab-7">
+                                <span class="text-dark" style="width: 150px;">Main Course</span>
+                            </a>
+                        </li>
+                        <li class="nav-item p-2">
+                            <a class="d-flex py-2 mx-2 border border-primary bg-white rounded-pill" data-bs-toggle="pill" href="#tab-8">
+                                <span class="text-dark" style="width: 150px;">Beverage</span>
+                            </a>
+                        </li>
+                        <li class="nav-item p-2">
+                            <a class="d-flex py-2 mx-2 border border-primary bg-white rounded-pill" data-bs-toggle="pill" href="#tab-9">
+                                <span class="text-dark" style="width: 150px;">Vietnamese Coffee</span>
+                            </a>
+                        </li>
+                        <li class="nav-item p-2">
+                            <a class="d-flex py-2 mx-2 border border-primary bg-white rounded-pill" data-bs-toggle="pill" href="#tab-10">
+                                <span class="text-dark" style="width: 150px;">Fresh Smoothies</span>
+                            </a>
+                        </li>
+                        <li class="nav-item p-2">
+                            <a class="d-flex py-2 mx-2 border border-primary bg-white rounded-pill" data-bs-toggle="pill" href="#tab-11">
+                                <span class="text-dark" style="width: 150px;">Beer & Drinks</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-6" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.1s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-1.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>SPRING ROLLS (NEM TRUYỀN THỐNG)</h4>
+                                                <h4 class="text-primary">£7.0</h4>
+                                            </div>
+                                            <p class="mb-0">Pork, wood-ear mushroom, glass noodles, carrot, shallot, wrapped in rice paper and fried until golden crispy.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.2s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-2.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>SUMMER ROLLS (GỎI CUỐN)</h4>
+                                                <h4 class="text-primary">£7.0</h4>
+                                            </div>
+                                            <p class="mb-0">Fresh and light rice paper rolls with lettuce, cucumber, carrots, herbs, vermicelli, and your choice of: prawn, grilled pork, or veggie.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.3s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-3.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>GRILLED LEMONGRASS PORK SKEWERS (XIÊN HEO NƯỚNG SẢ) </h4>
+                                                <h4 class="text-primary">£7.0</h4>
+                                            </div>
+                                            <p class="mb-0">Skewered lemongrass marinated pork belly, grilled to enhance flavour. Served with pickle and herbs.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.5s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-4.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>GRILLED LIME LEAF CHICKEN SKEWERS XIÊN GÀ NƯỚNG LÁ CHANH)</h4>
+                                                <h4 class="text-primary">£7.0</h4>
+                                            </div>
+                                            <p class="mb-0">Chicken thigh fillets marinated in lime leaf & spices, skewered and grilled for a hint of citrusy aroma.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.6s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-5.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>LEMONGRASS CHICKEN WINGS (CÁNH GÀ CHIÊN SẢ)</h4>
+                                                <h4 class="text-primary">£8.0</h4>
+                                            </div>
+                                            <p class="mb-0">Deep fried lemongrass marinated chicken wings.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.7s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-6.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>PRAWN SALAD WITH LOTUS STALKS (NỘM TÔM NGÓ SEN)</h4>
+                                                <h4 class="text-primary">£10.0</h4>
+                                            </div>
+                                            <p class="mb-0">Fresh prawns, lotus stalks, carrots, herbs & tangy dressing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.8s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-7.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>CHICKEN SALAD WITH ONIONS (NỘM GÀ HÀNH TÂY)</h4>
+                                                <h4 class="text-primary">£9.5</h4>
+                                            </div>
+                                            <p class="mb-0">Shredded chicken, onions, carrots, herbs, crushed peanuts with a sweet, tangy dressing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.8s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-8.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>BEEF SALAD WITH BANANA BLOSSOMS (NỘM BÒ HOA CHUỐI) </h4>
+                                                <h4 class="text-primary">£9.5</h4>
+                                            </div>
+                                            <p class="mb-0">Sliced beef, banana blossoms, carrots, onions, herbs, peanuts, and lime dressing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.8s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-9.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>SLICED BEEF WRAPPED IN BETEL LEAVES (BÒ LÁ LỐT)</h4>
+                                                <h4 class="text-primary">£8.5</h4>
+                                            </div>
+                                            <p class="mb-0">Grilled beef wrapped and skewered in some peppery betel leaves.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.8s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-10.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>VIET STYLE CHICKEN SALAD (NỘM GÀ XÉ PHAY) </h4>
+                                                <h4 class="text-primary">£9.0</h4>
+                                            </div>
+                                            <p class="mb-0">Shredded chicken, purple cabbage, crushed peanuts, herbs, onions, carrots, and sweet fish sauce.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.8s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-11.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>VEGETARIAN SPRING ROLLS (V) (NEM CHAY)</h4>
+                                                <h4 class="text-primary">£6.5</h4>
+                                            </div>
+                                            <p class="mb-0">Deep fried veggie rolls with beans, carrots, glass noodles, mushrooms.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.8s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-12.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>VEGETARIAN SUMMER ROLLS (V) (GỎI CUỐN CHAY)</h4>
+                                                <h4 class="text-primary">£6.5</h4>
+                                            </div>
+                                            <p class="mb-0">Fresh rice paper rolls with tofu, pickled carrots, radish, lettuce, herbs and vermicelli.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow bounceInUp" data-wow-delay="0.8s">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/starter-13.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>PRAWN CAKE (CHẢ TÔM) </h4>
+                                                <h4 class="text-primary">£9.5</h4>
+                                            </div>
+                                            <p class="mb-0">Crispy prawn cakes served with sweet chilli sauce.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div id="tab-7" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-1.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>BEEF PHO (PHỞ BÒ)</h4>
+                                                <h4 class="text-primary">£12.5</h4>
+                                            </div>
+                                            <p class="mb-0">Thin vermicelli noodles, beef bone broth, boiled chicken slices, garnish of spring onions and onions.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-2.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>CHICKEN PHO (PHỞ GÀ) </h4>
+                                                <h4 class="text-primary">£12.5</h4>
+                                            </div>
+                                            <p class="mb-0">Thin vermicelli noodles, chicken broth, boiled chicken, omelette strands, Vietnamese ham, shiitake mushrooms, garnish.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-3.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>HANOI CHICKEN NOODLES (BÚN THANG)</h4>
+                                                <h4 class="text-primary">£13.9</h4>
+                                            </div>
+                                            <p class="mb-0">Thin vermicelli noodles, chicken broth, boiled chicken, omelette strands, Vietnamese ham, shiitake mushrooms, garnish.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-4.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>HUE SPICY BEEF NOODLES (BÚN BÒ HUẾ)</h4>
+                                                <h4 class="text-primary">£13.9</h4>
+                                            </div>
+                                            <p class="mb-0">Thick vermicelli noodles, spicy lemongrass beef broth, beef brisket flank, shin, Vietnamese ham, garnish.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-5.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>TENDER SHORT RIBS PHO (PHỞ SƯỜN BÒ ĐẶC BIỆT)</h4>
+                                                <h4 class="text-primary">£15.3</h4>
+                                            </div>
+                                            <p class="mb-0">Flat rice noodle, slow-cooked beef bone broth, tender beef short-ribs, beef shin, flank, brisket, garnish.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-6.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>SOUTHERN BEEF NOODLE SALAD (BÚN BÒ NAM BỘ)</h4>
+                                                <h4 class="text-primary">£13.5</h4>
+                                            </div>
+                                            <p class="mb-0">Grilled lemongrass pork, vermicelli, lettuce, cucumber, fresh herbs, pickled carrots, radish, peanuts, sweet and tangy fish sauce.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-7.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>GRILLED PORK NOODLE SALAD (BÚN THỊT HEO NƯỚNG)</h4>
+                                                <h4 class="text-primary">£13.5</h4>
+                                            </div>
+                                            <p class="mb-0">Grilled lemongrass pork, vermicelli, lettuce, cucumber, fresh herbs, pickled carrots, radish, peanuts, sweet and tangy fish sauce.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-8.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>GRILLED CHICKEN NOODLE SALAD (BÚN THỊT GÀ NƯỚNG)</h4>
+                                                <h4 class="text-primary">£13.5</h4>
+                                            </div>
+                                            <p class="mb-0">Grilled lime leaf chicken, vermicelli, lettuce, cucumber, fresh herbs, pickled carrots, radish, peanuts, sweet and tangy fish sauce.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-9.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>VEGETARIAN NOODLE SALAD (V) (BÚN TRỘN CHAY)</h4>
+                                                <h4 class="text-primary">£12.0</h4>
+                                            </div>
+                                            <p class="mb-0">Fried tofu, veggie spring rolls, fresh herbs, lettuce, cucumber, red bell peppers, pickled carrots, radish, peanuts, sesame soy sauce.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-10.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>HANOI GRILLED PORK NOODLES (BÚN CHẢ HÀ NỘI)</h4>
+                                                <h4 class="text-primary">£14.5</h4>
+                                            </div>
+                                            <p class="mb-0">Barack Obama’s favourite - Vermicelli noodles, chargrilled pork, pork patties, herbs, pickles and sweet dipping sauce.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-11.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>SHAKING BEEF (BÒ LÚC LẮC)</h4>
+                                                <h4 class="text-primary">£16.5</h4>
+                                            </div>
+                                            <p class="mb-0">Sautéed marinated beef with bell peppers and onions. Select your side: Rice (Cơm), Chips (Khoai Tây Chiên).</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-12.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>GRILLED PORK BANH MI SANDWICH (BÁNH MÌ HEO)</h4>
+                                                <h4 class="text-primary">£9.0</h4>
+                                            </div>
+                                            <p class="mb-0">Baguette with lemongrass pork, pâté, Vietnamese ham, coriander, cucumber, pickled carrots and radish, sriracha mayo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/main-13.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>GRILLED PORK BANH MI SANDWICH (BÁNH MÌ GÀ)</h4>
+                                                <h4 class="text-primary">£9.0</h4>
+                                            </div>
+                                            <p class="mb-0">Baguette with lime leaf chicken, pâté, Vietnamese ham, coriander, cucumber, pickled carrots and radish, sriracha mayo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div id="tab-8" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-1.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Fresh Lime Juice (Nước chanh)</h4>
+                                                <h4 class="text-primary">£4</h4>
+                                            </div>
+                                            <p class="mb-0">Homemade soft drinks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-2.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Fresh Kumquat Juice (Nước quất)</h4>
+                                                <h4 class="text-primary">£4.5</h4>
+                                            </div>
+                                            <p class="mb-0">Homemade soft drinks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-3.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Fresh Orange Juice (Nước cam vắt)</h4>
+                                                <h4 class="text-primary">£4</h4>
+                                            </div>
+                                            <p class="mb-0">Homemade soft drinks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-4.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced Lemon Tea (Trà chanh)</h4>
+                                                <h4 class="text-primary">£4</h4>
+                                            </div>
+                                            <p class="mb-0">Homemade soft drinks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-5.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced Honey Kumquat Tea (Trà quất mật ong)</h4>
+                                                <h4 class="text-primary">£4.5</h4>
+                                            </div>
+                                            <p class="mb-0">Homemade soft drinks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-6.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced Peach Tea (Trà đào)</h4>
+                                                <h4 class="text-primary">£4.5</h4>
+                                            </div>
+                                            <p class="mb-0">Homemade soft drinks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-7.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced/Hot Green Tea (Trà đá/nóng xanh)</h4>
+                                                <h4 class="text-primary">£1.2</h4>
+                                            </div>
+                                            <p class="mb-0">Homemade soft drinks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-8.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Coconut Water (Nước dừa)</h4>
+                                                <h4 class="text-primary">£3.5</h4>
+                                            </div>
+                                            <p class="mb-0">Homemade soft drinks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-9.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Vergan Hot Teapuccino (Trà sữa gạo nóng)</h4>
+                                                <h4 class="text-primary">£4</h4>
+                                            </div>
+                                            <p class="mb-0">Vegan Milk is a liquor made from cashews, beans, soybeans, coconuts, etc.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/beverage-10.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Vergan Hot Chocolate (Cacao gạo nóng)</h4>
+                                                <h4 class="text-primary">£5</h4>
+                                            </div>
+                                            <p class="mb-0">Vegan Milk is a liquor made from cashews, beans, soybeans, coconuts, etc.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="tab-9" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/coffee-1.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced/Hot Vietcano (Cà phê Vietcano đá/nóng)</h4>
+                                                <h4 class="text-primary">£3.5</h4>
+                                            </div>
+                                            <p class="mb-0">"Americano" with Vietnamese filtered coffee.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/coffee-2.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced/Hot Brown Coffee (Cà phê sữa đá/nóng)</h4>
+                                                <h4 class="text-primary">£4</h4>
+                                            </div>
+                                            <p class="mb-0">Condensed milk coffee</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/coffee-3.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced/Hot Black (Đen đá/nóng)</h4>
+                                                <h4 class="text-primary">£3.5</h4>
+                                            </div>
+                                            <p class="mb-0">Filtered coffee with sugarcane water.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/coffee-4.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced/Hot White Latte (Bạc xỉu đá/nóng)</h4>
+                                                <h4 class="text-primary">£5</h4>
+                                            </div>
+                                            <p class="mb-0">Condensed milk coffee.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/coffee-5.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced Coconut Coffee (Cà phê cốt dừa)</h4>
+                                                <h4 class="text-primary">£5</h4>
+                                            </div>
+                                            <p class="mb-0">Vietnamese strong coffee with coconut cream.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/coffee-6.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced/Hot Salted Cream Coffee (Cà phê muối đá/nóng)</h4>
+                                                <h4 class="text-primary">£5</h4>
+                                            </div>
+                                            <p class="mb-0">Vietnamese coffee with salted cream.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/coffee-7.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Iced/Hot Vegan Brown Coffee (Cà phê sữa gạo đá/nóng)</h4>
+                                                <h4 class="text-primary">£4</h4>
+                                            </div>
+                                            <p class="mb-0">Coffee with soy, oats, rice milk, etc.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="tab-10" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/smothies-1.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Strawberry Banana (Sinh tố dâu chuối)</h4>
+                                                <h4 class="text-primary">£5</h4>
+                                            </div>
+                                            <p class="mb-0">Fresh fruit smoothie, cool and extremely refreshing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/smothies-2.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Blueberry Banana (Sinh tố việt quất chuối)</h4>
+                                                <h4 class="text-primary">£5</h4>
+                                            </div>
+                                            <p class="mb-0">Fresh fruit smoothie, cool and extremely refreshing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/smothies-3.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Avocado (Sinh tố bơ)</h4>
+                                                <h4 class="text-primary">£5</h4>
+                                            </div>
+                                            <p class="mb-0">Fresh fruit smoothie, cool and extremely refreshing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/smothies-4.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Salted Cream Mango (Sinh tố xoài kem muối)</h4>
+                                                <h4 class="text-primary">£5</h4>
+                                            </div>
+                                            <p class="mb-0">Fresh fruit smoothie, cool and extremely refreshing.</p>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                        
+                        <div id="tab-11" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-1.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>CocaCola</h4>
+                                                <h4 class="text-primary">£2</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-2.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Diet Coke</h4>
+                                                <h4 class="text-primary">£2</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-3.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Coke Zero</h4>
+                                                <h4 class="text-primary">£2</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-4.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Sprite</h4>
+                                                <h4 class="text-primary">£2</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-5.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Fanta</h4>
+                                                <h4 class="text-primary">£2</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-6.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Bottled Water</h4>
+                                                <h4 class="text-primary">£1.0</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-7.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Sting</h4>
+                                                <h4 class="text-primary">£2.5</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-8.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Wintermelon Tea (Trà bí đao)</h4>
+                                                <h4 class="text-primary">£2</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-9.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Thai Redbull</h4>
+                                                <h4 class="text-primary">£2.5</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-10.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Perrier Sparkling Water</h4>
+                                                <h4 class="text-primary">£3.5</h4>
+                                            </div>
+                                            <p class="mb-0">CANNED DRINKS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-11.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Budweiser</h4>
+                                                <h4 class="text-primary">£2.5</h4>
+                                            </div>
+                                            <p class="mb-0">BOTTLE BEERS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-12.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Corona</h4>
+                                                <h4 class="text-primary">£3.5</h4>
+                                            </div>
+                                            <p class="mb-0">BOTTLE BEERS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-13.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Peroni</h4>
+                                                <h4 class="text-primary">£3.5</h4>
+                                            </div>
+                                            <p class="mb-0">BOTTLE BEERS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-14.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Tiger</h4>
+                                                <h4 class="text-primary">£3.5</h4>
+                                            </div>
+                                            <p class="mb-0">BOTTLE BEERS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-15.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Hanoi Beer</h4>
+                                                <h4 class="text-primary">£3.5</h4>
+                                            </div>
+                                            <p class="mb-0">BOTTLE BEERS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="menu-item d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded-circle" src="img/drink-16.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                                <h4>Saigon Beer</h4>
+                                                <h4 class="text-primary">£3.5</h4>
+                                            </div>
+                                            <p class="mb-0">BOTTLE BEERS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Menu End -->
+
+                <!-- Footer Start -->
+        <div class="container-fluid footer py-6 my-6 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h1 class="text-primary">PhoHam<span class="text-dark">Liverpool</span></h1>
+                            <p class="lh-lg mb-4">A Taste of Vietnam in the Heart of Liverpool.</p>
+                            <div class="footer-icon d-flex">
+                                <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-primary btn-sm-square me-2 rounded-circle"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Special Facilities</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Pho</a>
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Banh Mi</a>
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Coffee</a>
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Viet Supermarket</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Contact Us</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i> 32 Hope St, Liverpool L1 9BX, United Kingdom</p>
+                                <p><i class="fa fa-phone-alt text-primary me-2"></i> (+44) 151 708 0355</p>
+                                <p><i class="fas fa-envelope text-primary me-2"></i> huongvietliverpool@gmail.com</p>
+                                <p><i class="fa fa-clock text-primary me-2"></i> 24/7 Hours Service</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Social Gallery</h4>
+                            <div class="row g-2">
+                                <div class="col-4">
+                                     <img src="/img/main-1.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-2.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-3.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-4.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-5.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-6.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright bg-dark py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>PhohamLiverpool</a>, All right reserved.</span>
+                    </div>
+                    <div class="col-md-6 my-auto text-center text-md-end text-white">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed by <a class="border-bottom" href="https://web.facebook.com/jinno.nguyendinhthiep">Nguyen Dinh Thiep</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-md-square btn-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+                <!-- link emoji mart script for emoji picker -->
+        <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+        <!-- linking custom script -->
+        <script src="Simple_Chatbot/script.js"></script>
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    </body>
+
+</html>

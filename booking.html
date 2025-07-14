@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>PhohamLiverpool - Booking</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playball&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/owl.carousel.min.css" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+
+                <!-- linking gg font icon -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+        <link rel="stylesheet" href="Simple_Chatbot/style.css">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+                <button id="chatbot-toggler">
+            <span class="material-symbols-outlined">mode_comment</span>
+            <span class="material-symbols-outlined">close</span>
+
+        </button>
+
+
+        <div class="chatbot-popup" style="z-index: 1000;">
+            <!-- Chatbot header -->
+            <div class="chat-header">
+                <div class="header-info">
+                    <svg class="chatbot-logo" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+                        <path d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"></path>
+                    </svg>
+                    <h2 class="logo-text">PhoHam AI</h2>
+                </div>
+                <button id="close-chatbot" class="material-symbols-outlined">
+                    keyboard_arrow_down
+                </button>
+            </div>
+
+            <!-- Chatbot body -->
+            <div class="chat-body">
+                <div class="message bot-message" id="bot-message">
+                    <svg class="bot-avatar" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+                        <path d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"></path>
+                    </svg>
+                    <div class="message-text" id="bot-message">
+                        Hi! I'm PhoHam's chat bot, How could I assist you today? <br>
+                        (Chào bạn Mình là chat bot của Pho Ham, mình có thể giúp gì cho bạn hôm nay?)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chatbot footer -->
+            <div class="chat-footer">
+                <form action="#" class="chat-form">
+                    <textarea placeholder="Message..." class="message-input" required></textarea>
+                    <div class="chat-controls">
+                        <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
+                        <div class="file-upload-wrapper">
+                            <input type="file" accept="images/*" id="file-input" hidden>
+                            <img src="#">
+                            <button type="button" id="file-upload" class="material-symbols-outlined">attach_file</button>
+                            <button type="button" id="file-cancel" class="material-symbols-outlined">close</button>
+                        </div>
+                        <button type="button" id="voice-btn" class="material-symbols-outlined">mic</button>
+                        <!-- <button id="speak-btn" class="material-symbols-outlined">speaker</button> -->
+                        <button type="submit" id="send-message" class="material-symbols-outlined">arrow_upward</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Navbar Start -->
+<nav th:fragment="navbar">
+  <div class="container-fluid nav-bar fixed-top bg-white shadow-sm">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light py-3">
+        <!-- Logo -->
+        <a href="/" class="navbar-brand" style="margin-right: 50px;">
+          <h1 class="text-primary fw-bold mb-0">Phoham<span class="text-dark">Liverpool</span></h1>
+        </a>
+
+        <!-- Toggle button for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="fa fa-bars text-primary"></span>
+        </button>
+
+        <!-- Collapse content -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 w-100">
+			  <!-- Nav items -->
+			  <li class="nav-item"><a href="/index.html" class="nav-item nav-link">Home</a></li>
+			  <li class="nav-item"><a href="/menu.html" class="nav-item nav-link">Menu</a></li>
+			  <li class="nav-item"><a href="/booking.html" class="nav-item nav-link active">Booking</a></li>
+			  <li class="nav-item"><a href="/supermarket.html" class="nav-item nav-link">Supermarket</a></li>
+			  <li class="nav-item"><a href="/blog.html" class="nav-item nav-link ">Our Blog</a></li>
+			  <li class="nav-item"><a href="/about.html" class="nav-item nav-link">About Us</a></li>
+			  <li class="nav-item"><a href="/contact.html" class="nav-item nav-link">Contact</a></li>
+			
+			  <!-- Mobile only -->
+			  <li class="nav-item d-lg-none mt-2">
+			    <a class="nav-link d-flex align-items-center gap-1 text-dark disabled">
+			      <i class="fas fa-star text-warning"></i>
+			      <span class="fw-bold text-primary" th:text="${userTotalPoint != null ? userTotalPoint : 0}">0</span>
+			    </a>
+			  </li>
+			
+			  <li class="nav-item d-lg-none">
+			    <a th:href="@{/cart/view}" class="nav-link d-flex align-items-center">
+			      <i class="fas fa-shopping-cart me-1 text-success"></i> Cart
+			    </a>
+			  </li>
+			
+			  <li class="nav-item d-lg-none">
+			    <a href="" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Book Now</a>
+			  </li>
+			</ul>
+
+
+			<!-- Desktop version vẫn giữ bên ngoài -->
+			<!-- Right side desktop -->
+			<div class="d-none d-lg-flex align-items-center gap-3 ms-auto">
+			  
+			  <!-- ⭐ Point -->
+			  <div class="d-flex align-items-center gap-1">
+			    <i class="fas fa-star text-warning"></i>
+			    <span class="fw-bold text-primary small" th:text="${userTotalPoint != null ? userTotalPoint : 0}">0</span>
+			  </div>
+			
+			  <!-- 🛒 Cart -->
+			  <a href="/" class="btn btn-success btn-sm rounded-circle d-flex align-items-center justify-content-center"
+			     style="width: 36px; height: 36px;">
+			    <i class="fas fa-shopping-cart"></i>
+			  </a>
+			
+			  <!-- 👤 Profile -->
+			  <a href="/booking.html" class="btn btn-warning fw-bold text-dark px-3 py-2 rounded-pill" style="white-space: nowrap;">
+			    Booking
+			  </a>
+			</div>
+
+        </div>
+      </nav>
+    </div>
+  </div>
+</nav>
+  <!-- Navbar End -->
+
+
+        <!-- Hero Start -->
+        <div class="container-fluid bg-light py-6 my-6 mt-0">
+            <div class="container text-center animated bounceInDown">
+                <h1 class="display-1 mb-4">Booking Table & Event</h1>
+                <ol class="breadcrumb justify-content-center mb-0 animated bounceInDown">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item text-dark" aria-current="page">Booking</li>
+                </ol>
+            </div>
+        </div>
+        <!-- Hero End -->
+        
+		
+        <!-- Book Us Start -->
+        <div class="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="row g-0">
+                    <div class="col-1">
+                        <img src="img/background-site.jpg" class="img-fluid h-100 w-100 rounded-start" style="object-fit: cover; opacity: 0.7;" alt="">
+                    </div>
+                    <div class="col-10">
+                        <div class="border-bottom border-top border-primary bg-light py-5 px-4">
+                            <div class="text-center">
+                                <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Reservation</small>
+                                <h1 class="display-5 mb-5">What you want Our Services</h1>
+                                <p>Please enter your information correctly and double check before submitting!</p>
+                            </div>
+                            
+                            <form id="booking-form">
+							    <div class="row g-4 form text-dark">  <!-- Thêm class text-dark cho toàn bộ -->
+                                    
+							        <div class="col-lg-4 col-md-6">
+							            <label class="fw-bold mb-2 text-dark">👤 Full Name</label>
+							            <input type="text" name="full_name" class="form-control border-primary p-2 text-dark" th:value="${user.fullName}">
+							        </div>
+
+                                    <div class="col-lg-4 col-md-6">
+							            <label class="fw-bold mb-2 text-dark">📩 Your Email</label>
+							            <input type="text" name="email" class="form-control border-primary p-2 text-dark" th:value="${user.fullName}">
+							        </div>
+							
+							        <div class="col-lg-4 col-md-6">
+                                        <label class="fw-bold mb-2 text-dark">📞 Phone Number</label>
+                                        <input type="text" name="phone" class="form-control border-primary p-2 text-dark" th:value="${user.phone}" maxlength="15" pattern="[0-9]{10,15}" title="Phone number must be 10-15 digits">
+                                    </div>
+							
+							        <div class="col-lg-4 col-md-6">
+							            <label class="fw-bold mb-2 text-dark">📅 Date & Time</label>
+							            <input type="datetime-local" name="reservationTime" class="form-control border-primary p-2 text-dark" required>
+							        </div>
+							
+							        <div class="col-lg-4 col-md-6">
+                                        <label class="fw-bold mb-2 text-dark">🍽️ Number of Tables</label>
+                                        <input type="number" name="numberOfTable" class="form-control border-primary p-2 text-dark" required min="1" max="30">
+                                    </div>
+							
+							        <div class="col-lg-4 col-md-6">
+							            <label class="fw-bold mb-2 text-dark">💰Table Type</label>
+                                        <select name="priceOfTable" class="form-select border-primary p-2 text-dark" required>
+                                            <option value="" selected>Select table type</option>
+                                            <option value="650">650£/table</option>
+                                            <option value="700">700£/table</option>
+                                            <option value="800">800£/table</option>
+                                        </select>
+							        </div>
+							
+							        <div class="col-lg-4 col-md-6">
+							            <label class="fw-bold mb-2 text-dark">👥 Number of People</label>
+							            <input type="number" name="numberOfPeople" class="form-control border-primary p-2 text-dark" min="1" max="100" required>
+							        </div>
+							
+							        <div class="col-lg-12 col-md-12">
+							            <label class="fw-bold mb-2 text-dark">📝 Note (Optional)</label>
+							            <textarea class="form-control border-primary p-2 text-dark" name="note" rows="3" placeholder="E.g., Birthday party, need extra space..."></textarea>
+							        </div>
+							
+							        <div class="col-lg-4 col-md-6">
+							            <label class="fw-bold mb-2 text-dark">💷 Total Price (£)</label>
+							            <input type="text" id="totalPrice" class="form-control border-primary p-2 text-dark fw-bold bg-light" readonly>
+							        </div>
+
+							        <div class="col-12 text-center mt-4">
+							            <button type="submit" class="btn btn-primary px-5 py-3 rounded-pill fs-5">
+							                🛒 Submit Booking
+							            </button>
+							        </div>
+		                            <div class="col-12 text-center mt-4">
+									    <button type="button" class="btn btn-outline-primary px-4 py-2 rounded-pill" data-bs-toggle="modal" data-bs-target="#pendingModal">
+									        📋 View Pending Bookings
+									    </button>
+									</div>
+							    </div>
+							</form>
+
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <img src="img/background-site.jpg" class="img-fluid h-100 w-100 rounded-end" style="object-fit: cover; opacity: 0.7;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Book Us End -->
+        
+        
+       	<!-- Service Start -->
+        <div class="container-fluid service py-6">
+            <div class="container">
+                <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+                    <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Our Services</small>
+                    <h1 class="display-5 mb-5">What We Offer</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
+                        <div class="bg-light rounded service-item">
+                            <div class="service-content d-flex align-items-center justify-content-center p-4">
+                                <div class="service-content-icon text-center">
+                                    <i class="fas fa-cheese fa-7x text-primary mb-4"></i>
+                                    <h4 class="mb-3">Wedding Services</h4>
+                                    <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                                    <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.3s">
+                        <div class="bg-light rounded service-item">
+                            <div class="service-content d-flex align-items-center justify-content-center p-4">
+                                <div class="service-content-icon text-center">
+                                    <i class="fas fa-pizza-slice fa-7x text-primary mb-4"></i>
+                                    <h4 class="mb-3">Corporate Catering</h4>
+                                    <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                                    <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.5s">
+                        <div class="bg-light rounded service-item">
+                            <div class="service-content d-flex align-items-center justify-content-center p-4">
+                                <div class="service-content-icon text-center">
+                                    <i class="fas fa-hotdog fa-7x text-primary mb-4"></i>
+                                    <h4 class="mb-3">Cocktail Reception</h4>
+                                    <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                                    <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.7s">
+                        <div class="bg-light rounded service-item">
+                            <div class="service-content d-flex align-items-center justify-content-center p-4">
+                                <div class="service-content-icon text-center">
+                                    <i class="fas fa-hamburger fa-7x text-primary mb-4"></i>
+                                    <h4 class="mb-3">Bento Catering</h4>
+                                    <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                                    <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
+                        <div class="bg-light rounded service-item">
+                            <div class="service-content d-flex align-items-center justify-content-center p-4">
+                                <div class="service-content-icon text-center">
+                                    <i class="fas fa-wine-glass-alt fa-7x text-primary mb-4"></i>
+                                    <h4 class="mb-3">Pub Party</h4>
+                                    <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                                    <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.3s">
+                        <div class="bg-light rounded service-item">
+                            <div class="service-content d-flex align-items-center justify-content-center p-4">
+                                <div class="service-content-icon text-center">
+                                    <i class="fas fa-walking fa-7x text-primary mb-4"></i>
+                                    <h4 class="mb-3">Home Delivery</h4>
+                                    <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                                    <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.5s">
+                        <div class="bg-light rounded service-item">
+                            <div class="service-content d-flex align-items-center justify-content-center p-4">
+                                <div class="service-content-icon text-center">
+                                    <i class="fas fa-wheelchair fa-7x text-primary mb-4"></i>
+                                    <h4 class="mb-3">Sit-down Catering</h4>
+                                    <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                                    <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.7s">
+                        <div class="bg-light rounded service-item">
+                            <div class="service-content d-flex align-items-center justify-content-center p-4">
+                                <div class="service-content-icon text-center">
+                                    <i class="fas fa-utensils fa-7x text-primary mb-4"></i>
+                                    <h4 class="mb-3">Buffet Catering</h4>
+                                    <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                                    <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+        
+<!-- Modal Pending Booking -->
+<div class="modal fade" id="pendingModal" tabindex="-1" aria-labelledby="pendingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title fw-bold" id="pendingModalLabel">🕒 Your Pending Bookings (We will contact to you soon and make sure your phone number is right)</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body text-dark">
+
+        <table class="table table-bordered table-hover align-middle text-dark">
+          <thead class="table-light">
+            <tr class="text-center">
+              <th>#</th>
+              <th>Date & Time</th>
+              <th>Tables</th>
+              <th>Table Type (£)</th>
+              <th>Total Price (£)</th>
+              <th>People</th>
+              <th style="min-width: 200px;">Note</th>
+              <th>Points Earned</th> <!-- ✅ Thêm cột điểm thưởng -->
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="b, iterStat : ${pendingBookings}">
+              <td th:text="${iterStat.count}" class="text-center"></td>
+              <td th:text="${#temporals.format(b.reservationTime, 'dd/MM/yyyy HH:mm')}" class="text-center"></td>
+              <td th:text="${b.numberOfTable}" class="text-center"></td>
+              <td th:text="${b.priceOfTable}" class="text-center"></td>
+              <td th:text="${b.priceOfTable * b.numberOfTable}" class="text-center fw-bold"></td>
+              <td th:text="${b.numberOfPeople}" class="text-center"></td>
+              <td th:text="${b.note}" class="text-wrap"></td>
+              <td th:text="${b.earnedPoint}" class="text-center fw-bold text-primary"></td> <!-- ✅ Điểm thưởng -->
+              <td>
+                <span th:text="${b.status}" th:classappend="${b.status == 'Pending'} ? 'badge bg-warning text-dark' : 'badge bg-secondary'"></span>
+              </td>
+              <td class="text-center">
+                <form th:action="@{/userbooking/cancel}" method="post">
+                  <input type="hidden" name="reservationId" th:value="${b.reservationId}" />
+                  <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill">
+                    ❌ Cancel
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <tr th:if="${pendingBookings == null or #lists.isEmpty(pendingBookings)}">
+              <td colspan="10" class="text-center text-muted">No pending bookings.</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Modal Success -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-success shadow">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title fw-bold" id="successModalLabel">🎉 Booking Confirmed</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="fs-5">✅ Thank you for your reservation.<br>We’ll contact you shortly!</p>
+        <p class="text-muted small">You can close this window or make another booking after refreshing the page.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+                <!-- Footer Start -->
+        <div class="container-fluid footer py-6 my-6 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h1 class="text-primary">PhoHam<span class="text-dark">Liverpool</span></h1>
+                            <p class="lh-lg mb-4">A Taste of Vietnam in the Heart of Liverpool.</p>
+                            <div class="footer-icon d-flex">
+                                <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-primary btn-sm-square me-2 rounded-circle"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Special Facilities</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Pho</a>
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Banh Mi</a>
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Coffee</a>
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Viet Supermarket</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Contact Us</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i> 32 Hope St, Liverpool L1 9BX, United Kingdom</p>
+                                <p><i class="fa fa-phone-alt text-primary me-2"></i> (+44) 151 708 0355</p>
+                                <p><i class="fas fa-envelope text-primary me-2"></i> huongvietliverpool@gmail.com</p>
+                                <p><i class="fa fa-clock text-primary me-2"></i> 24/7 Hours Service</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Social Gallery</h4>
+                            <div class="row g-2">
+                                <div class="col-4">
+                                     <img src="/img/main-1.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-2.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-3.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-4.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-5.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-6.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright bg-dark py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>PhohamLiverpool</a>, All right reserved.</span>
+                    </div>
+                    <div class="col-md-6 my-auto text-center text-md-end text-white">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed by <a class="border-bottom" href="https://web.facebook.com/jinno.nguyendinhthiep">Nguyen Dinh Thiep</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-md-square btn-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+                <!-- link emoji mart script for emoji picker -->
+        <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+        <!-- linking custom script -->
+        <script src="Simple_Chatbot/script.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  emailjs.init('Dy6MbRShvigfv8Dh0'); // Your Public Key
+
+  let isSubmitted = false; // Flag to prevent multiple submits
+
+  document.getElementById("booking-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (isSubmitted) {
+      alert("⚠️ You have already submitted a booking. Please refresh the page to make another.");
+      return;
+    }
+
+    const form = event.target;
+    const templateParams = {
+      full_name: form.full_name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      reservationTime: form.reservationTime.value,
+      numberOfTable: form.numberOfTable.value,
+      priceOfTable: form.priceOfTable.value,
+      numberOfPeople: form.numberOfPeople.value,
+      note: form.note.value
+    };
+
+    emailjs.send('service_kvbo5za', 'template_rslmvb5', templateParams)
+      .then(function(response) {
+        isSubmitted = true;
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+
+        // Optional: Reset form or disable button
+        form.querySelector('button[type="submit"]').disabled = true;
+      })
+      .catch(function(error) {
+        alert("❌ Failed to send email: " + error.text);
+      });
+  });
+</script>
+
+    </body>
+
+</html>

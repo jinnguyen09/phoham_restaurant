@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>PhohamLiverpool - Contact</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playball&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/owl.carousel.min.css" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+
+                <!-- linking gg font icon -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+        <link rel="stylesheet" href="Simple_Chatbot/style.css">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+                <button id="chatbot-toggler">
+            <span class="material-symbols-outlined">mode_comment</span>
+            <span class="material-symbols-outlined">close</span>
+
+        </button>
+
+
+        <div class="chatbot-popup" style="z-index: 1000;">
+            <!-- Chatbot header -->
+            <div class="chat-header">
+                <div class="header-info">
+                    <svg class="chatbot-logo" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+                        <path d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"></path>
+                    </svg>
+                    <h2 class="logo-text">PhoHam AI</h2>
+                </div>
+                <button id="close-chatbot" class="material-symbols-outlined">
+                    keyboard_arrow_down
+                </button>
+            </div>
+
+            <!-- Chatbot body -->
+            <div class="chat-body">
+                <div class="message bot-message" id="bot-message">
+                    <svg class="bot-avatar" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+                        <path d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"></path>
+                    </svg>
+                    <div class="message-text" id="bot-message">
+                        Hi! I'm PhoHam's chat bot, How could I assist you today? <br>
+                        (Chào bạn Mình là chat bot của Pho Ham, mình có thể giúp gì cho bạn hôm nay?)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chatbot footer -->
+            <div class="chat-footer">
+                <form action="#" class="chat-form">
+                    <textarea placeholder="Message..." class="message-input" required></textarea>
+                    <div class="chat-controls">
+                        <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
+                        <div class="file-upload-wrapper">
+                            <input type="file" accept="images/*" id="file-input" hidden>
+                            <img src="#">
+                            <button type="button" id="file-upload" class="material-symbols-outlined">attach_file</button>
+                            <button type="button" id="file-cancel" class="material-symbols-outlined">close</button>
+                        </div>
+                        <button type="button" id="voice-btn" class="material-symbols-outlined">mic</button>
+                        <!-- <button id="speak-btn" class="material-symbols-outlined">speaker</button> -->
+                        <button type="submit" id="send-message" class="material-symbols-outlined">arrow_upward</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Navbar Start -->
+<nav th:fragment="navbar">
+  <div class="container-fluid nav-bar fixed-top bg-white shadow-sm">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light py-3">
+        <!-- Logo -->
+        <a href="/" class="navbar-brand" style="margin-right: 50px;">
+          <h1 class="text-primary fw-bold mb-0">Phoham<span class="text-dark">Liverpool</span></h1>
+        </a>
+
+        <!-- Toggle button for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="fa fa-bars text-primary"></span>
+        </button>
+
+        <!-- Collapse content -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 w-100">
+			  <!-- Nav items -->
+			  <li class="nav-item"><a href="/index.html" class="nav-item nav-link">Home</a></li>
+			  <li class="nav-item"><a href="/menu.html" class="nav-item nav-link">Menu</a></li>
+			  <li class="nav-item"><a href="/booking.html" class="nav-item nav-link">Booking</a></li>
+			  <li class="nav-item"><a href="/supermarket.html" class="nav-item nav-link">Supermarket</a></li>
+			  <li class="nav-item"><a href="/blog.html" class="nav-item nav-link ">Our Blog</a></li>
+			  <li class="nav-item"><a href="/about.html" class="nav-item nav-link">About Us</a></li>
+			  <li class="nav-item"><a href="/contact.html" class="nav-item nav-link active">Contact</a></li>
+			
+			  <!-- Mobile only -->
+			  <li class="nav-item d-lg-none mt-2">
+			    <a class="nav-link d-flex align-items-center gap-1 text-dark disabled">
+			      <i class="fas fa-star text-warning"></i>
+			      <span class="fw-bold text-primary" th:text="${userTotalPoint != null ? userTotalPoint : 0}">0</span>
+			    </a>
+			  </li>
+			
+			  <li class="nav-item d-lg-none">
+			    <a th:href="@{/cart/view}" class="nav-link d-flex align-items-center">
+			      <i class="fas fa-shopping-cart me-1 text-success"></i> Cart
+			    </a>
+			  </li>
+			
+			  <li class="nav-item d-lg-none">
+			    <a href="" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Book Now</a>
+			  </li>
+			</ul>
+
+
+			<!-- Desktop version vẫn giữ bên ngoài -->
+			<!-- Right side desktop -->
+			<div class="d-none d-lg-flex align-items-center gap-3 ms-auto">
+			  
+			  <!-- ⭐ Point -->
+			  <div class="d-flex align-items-center gap-1">
+			    <i class="fas fa-star text-warning"></i>
+			    <span class="fw-bold text-primary small" th:text="${userTotalPoint != null ? userTotalPoint : 0}">0</span>
+			  </div>
+			
+			  <!-- 🛒 Cart -->
+			  <a href="/" class="btn btn-success btn-sm rounded-circle d-flex align-items-center justify-content-center"
+			     style="width: 36px; height: 36px;">
+			    <i class="fas fa-shopping-cart"></i>
+			  </a>
+			
+			  <!-- 👤 Profile -->
+			  <a href="/booking.html" class="btn btn-warning fw-bold text-dark px-3 py-2 rounded-pill" style="white-space: nowrap;">
+			    Booking
+			  </a>
+			</div>
+
+        </div>
+      </nav>
+    </div>
+  </div>
+</nav>
+  <!-- Navbar End -->
+
+
+<!-- Hero Start -->
+        <div class="container-fluid bg-light py-6 my-6 mt-0">
+            <div class="container text-center animated bounceInDown">
+                <h1 class="display-1 mb-4">Contact with us</h1>
+                <ol class="breadcrumb justify-content-center mb-0 animated bounceInDown">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item text-dark" aria-current="page">Contact</li>
+                </ol>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+
+        <!-- Contact Start -->
+        <div class="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="p-5 bg-light rounded contact-form">
+                    <div class="row g-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2378.7203516133686!2d-2.9729898874418867!3d53.40194217044626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b21005fca2c8f%3A0x7ccd8f99a66ba194!2sPhoHam!5e0!3m2!1sen!2s!4v1751434787925!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="col-12">
+                            <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Get in touch</small>
+                            <h1 class="display-5 mb-0">Contact Us For Any Queries!</h1>
+                        </div>
+                        <div class="col-md-6 col-lg-7">                   
+                            <form>
+                                <input type="text" class="w-100 form-control p-3 mb-4 border-primary bg-light" placeholder="Your Name">
+                                <input type="number" class="w-100 form-control p-3 mb-4 border-primary bg-light" placeholder="Your Phone Number">
+                                <input type="email" class="w-100 form-control p-3 mb-4 border-primary bg-light" placeholder="Enter Your Email">
+                                <textarea class="w-100 form-control mb-4 p-3 border-primary bg-light" rows="4" cols="10" placeholder="Your Message"></textarea>
+                                <button class="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill" type="submit">Submit Now</button>
+                            </form>
+                        </div>
+                        <div class="col-md-6 col-lg-5">
+                            <div>
+                                <div class="d-inline-flex w-100 border border-primary p-4 rounded mb-4">
+                                    <i class="fas fa-map-marker-alt fa-2x text-primary me-4"></i>
+                                    <div class="">
+                                        <h4>Address</h4>
+                                        <p>32 Hope St, Liverpool L1 9BX, United Kingdom</p>
+                                    </div>
+                                </div>
+                                <div class="d-inline-flex w-100 border border-primary p-4 rounded mb-4">
+                                    <i class="fas fa-envelope fa-2x text-primary me-4"></i>
+                                    <div class="">
+                                        <h4>Mail Us</h4>
+                                        <p class="mb-2">huongvietliverpool@gmail.com</p>
+                                        <p class="mb-0">thiepthanhx37@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="d-inline-flex w-100 border border-primary p-4 rounded">
+                                    <i class="fa fa-phone-alt fa-2x text-primary me-4"></i>
+                                    <div class="">
+                                        <h4>Telephone</h4>
+                                        <p class="mb-2">(+44) 151 708 0355</p>
+                                        <p class="mb-0">(+84) 988 822 102</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+
+<!-- ✅ Modal Success -->
+<div class="modal fade" id="contactSuccessModal" tabindex="-1" aria-labelledby="contactSuccessModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-success shadow">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title fw-bold" id="contactSuccessModalLabel">🎉 Message Sent</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="fs-5">✅ Thank you for contacting us!<br>We’ll reply as soon as possible.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-success rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+                <!-- Footer Start -->
+        <div class="container-fluid footer py-6 my-6 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h1 class="text-primary">PhoHam<span class="text-dark">Liverpool</span></h1>
+                            <p class="lh-lg mb-4">A Taste of Vietnam in the Heart of Liverpool.</p>
+                            <div class="footer-icon d-flex">
+                                <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-primary btn-sm-square me-2 rounded-circle"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Special Facilities</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Pho</a>
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Banh Mi</a>
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Coffee</a>
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Viet Supermarket</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Contact Us</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i> 32 Hope St, Liverpool L1 9BX, United Kingdom</p>
+                                <p><i class="fa fa-phone-alt text-primary me-2"></i> (+44) 151 708 0355</p>
+                                <p><i class="fas fa-envelope text-primary me-2"></i> huongvietliverpool@gmail.com</p>
+                                <p><i class="fa fa-clock text-primary me-2"></i> 24/7 Hours Service</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Social Gallery</h4>
+                            <div class="row g-2">
+                                <div class="col-4">
+                                     <img src="/img/main-1.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-2.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-3.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-4.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-5.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                                <div class="col-4">
+                                     <img src="/img/main-6.jpg" class="img-fluid rounded-circle border border-primary p-2" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright bg-dark py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>PhohamLiverpool</a>, All right reserved.</span>
+                    </div>
+                    <div class="col-md-6 my-auto text-center text-md-end text-white">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed by <a class="border-bottom" href="https://web.facebook.com/jinno.nguyendinhthiep">Nguyen Dinh Thiep</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-md-square btn-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+                <!-- link emoji mart script for emoji picker -->
+        <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+        <!-- linking custom script -->
+        <script src="Simple_Chatbot/script.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- ✅ EmailJS Script -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  emailjs.init('Dy6MbRShvigfv8Dh0'); // Replace with your PUBLIC KEY
+
+  let contactSubmitted = false;
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.querySelector(".contact-form form");
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (contactSubmitted) {
+        alert("⚠️ You've already submitted this form. Please refresh the page to send another message.");
+        return;
+      }
+
+      const templateParams = {
+        name: contactForm.querySelector('input[placeholder="Your Name"]').value,
+        phone: contactForm.querySelector('input[placeholder="Your Phone Number"]').value,
+        email: contactForm.querySelector('input[placeholder="Enter Your Email"]').value,
+        Note: contactForm.querySelector('textarea[placeholder="Your Message"]').value
+      };
+
+      emailjs.send('service_kvbo5za', 'template_contactform', templateParams)
+        .then(() => {
+          contactSubmitted = true;
+          const modal = new bootstrap.Modal(document.getElementById('contactSuccessModal'));
+          modal.show();
+          contactForm.querySelector('button[type="submit"]').disabled = true;
+        })
+        .catch((error) => {
+          alert("❌ Failed to send message: " + error.text);
+        });
+    });
+  });
+</script> -->
+    </body>
+
+</html>
